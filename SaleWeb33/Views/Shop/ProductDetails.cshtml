@@ -1,0 +1,28 @@
+﻿@model SaleWeb33.Models.Product
+
+@{
+    ViewData["Title"] = Model.ProductName;
+    Layout = "~/Views/Shared/_Layout_shop.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <img src=@Model.Images class="" width="500px" height="500px" alt="..." style="object-fit:cover">
+        </div>
+        <div class="col">
+            <div>
+                <p class="fw-bold fs-1">@Model.ProductName</p>
+                <p class="fs-3"><b>Nhãn hiệu:</b> @Model.Brand.BrandName</p>
+                <p class="fs-3"><b>Loại:</b> @Model.Category.CategoryName</p>
+                <p class="fs-3"><b>Size</b> : @Model.Size.SizeOption</p>
+                <p class="fs-3"><b>Màu</b> : @Model.Color.ColorName</p>
+                <p class="fs-3">@Html.DisplayFor(model => model.Price)0 VNĐ</p>
+            </div>
+            <div class="pt-3">
+                <a class="btn btn-dark" asp-controller="Cart" asp-action="AddCart" asp-route-id="@Model.ProductId">Thêm vào giỏ</a>
+            </div>
+        </div>
+    </div>
+  
+</div>

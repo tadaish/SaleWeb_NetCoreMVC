@@ -1,0 +1,68 @@
+﻿@model IEnumerable<SaleWeb33.Models.Product>
+
+
+@{
+    ViewData["Title"] = "Home";
+    Layout = "~/Views/Shared/_Layout_shop.cshtml";
+}
+<div class="row mt-5">
+    <div class="col col-xxl-2">
+        <div class="accordion" id="accordionPanelsStayOpenExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                        Màu sắc
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                    <div class="accordion-body">
+                      1
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                        Giá
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+                    <div class="accordion-body">
+                       2
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                       Kích cỡ
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+                    <div class="accordion-body">
+                      3
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col col-xxl-8 d-flex gap-2 flex-wrap ms-auto">
+
+        @foreach (Product p in Model)
+        {
+            <a asp-controller="Shop" asp-action="ProductDetails" asp-route-id="@p.ProductId" class="nav-link text-reset">
+                <div class="card" style="width: 15rem;" id="product">
+                    <img src="@p.Images" class="card-img-top " alt="..." height="250px" style="object-fit:cover">
+                    <div class="card-body">
+                        <div class="card-text d-flex flex-column justify-content-center">
+                            <p class="fw-bold fs-6">@p.ProductName</p>
+                            <small class="">@String.Format("{0:0.000}", @p.Price) VNĐ</small>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+        }
+    </div>
+</div>
+

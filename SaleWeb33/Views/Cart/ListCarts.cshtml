@@ -1,0 +1,68 @@
+﻿@model IEnumerable<SaleWeb33.Models.CartModel>
+
+@{
+    ViewBag.Title = "ListCarts";
+    Layout = "~/Views/Shared/_Layout_shop.cshtml";
+}
+
+
+
+
+@if (@ViewBag.Count > 0)
+{
+    <div class="d-flex justify-content-center">
+        <div class="card align-self-center" id="cart" style="width:fit-content">
+            <div class="card-title">
+                <div class="text-center mt-2">
+                    <h2>Giỏ hàng</h2>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <div class="row">
+                    <div class="col d-flex gap-5 pt-3 flex-wrap">
+                        @foreach (CartModel c in Model)
+                        {
+                            <div class="d-flex gap-3">
+                                <div class="border" style="width:fit-content">
+                                    <img src=@c.Images alt="..." width="200px" height="200px" style="object-fit:cover">
+                                </div>
+                                <div>
+                                    <p>@c.ProductName</p>
+                                    <p>@c.Quantity</p>
+                                    <p>@c.Price VNĐ</p>
+                                    <a class="btn btn-danger" asp-controller="Cart" asp-action="Delete" asp-route-id="@c.ProductID">Xoá</a>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="card-footer d-flex justify-content-evenly align-items-center gap-2">
+                <div class="d-flex gap-3 me-auto pt-2">
+                    <p class="fs-6">
+                        Số lượng sản phẩm: @ViewBag.Count
+                    </p>
+                    <p class="fs-6">
+                        Thành tiền: @String.Format("{0:0.000}", ViewBag.Total) VNĐ
+                    </p>
+                </div>
+                <div>
+                    <a class="btn btn-info ms-auto" asp-action="OrderProduct" asp-controller="Cart">Đặt hàng</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+   
+}
+else
+{
+    <h2>Chưa có sản phẩm!</h2>
+}
+
+@ViewBag.ex
+
+
